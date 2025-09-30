@@ -1,19 +1,16 @@
+import Link from "next/link";
 import Image from "next/image";
 import { photos } from "@/app/data/photos";
 
 export default function GalleryPage() {
   return (
-    <div>
-      <h1>Photo Gallery</h1>
+    <div style={{ padding: "20px" }}>
+      <h1>Gallery</h1>
       <div style={{ display: "flex", gap: "20px" }}>
-        {photos.map((photo) => (
-          <div key={photo.id}>
-            <Image src={photo.src} alt={photo.desc}
-              width={300} height={200} placeholder="blur"
-              blurDataURL="/images/placeholder.png"
-            />
-            <p>{photo.desc}</p>
-          </div>
+        {photos.map((p) => (
+          <Link key={p.id} href={`/gallery/${p.id}`}>
+            <Image src={p.src} alt={p.desc} width={300} height={200} />
+          </Link>
         ))}
       </div>
     </div>
